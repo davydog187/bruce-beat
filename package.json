@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/davydog187/bruce-beat",
   "dependencies": {
+    "bluebird": "^2.9.16",
     "gulp": "^3.8.11",
     "gulp-nodemon": "^2.0.2",
+    "instagram-node-lib": "^0.1.1",
     "koa": "~0.18.1",
     "koa-route": "^2.4.0",
     "koa-static": "^1.4.9"

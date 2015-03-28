@@ -3,6 +3,7 @@
 var app = require("koa")();
 var serve = require("koa-static");
 var router = require("koa-route");
+var googleImageRouter = require("./server/googleImageRouter");
 
 var PORT = 8080;
 
@@ -10,17 +11,9 @@ function makeRelative(path) {
     return __dirname + "/" + path;
 }
 
-function *getGoogleImg(query){
-
-    this.body = {
-        img: '/path'
-    };
-
-}
-
 app.use(serve(makeRelative("html")));
 app.use(serve(makeRelative("client")));
-app.use(router.get('/get-google-img', getGoogleImg));
+app.use(router.get('/api/images/:query', googleImageRouter));
 
 app.listen(PORT);
 

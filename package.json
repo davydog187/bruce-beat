@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/davydog187/bruce-beat/issues"
   },
-  "homepage": "https://github.com/davydog187/bruce-beat"
+  "homepage": "https://github.com/davydog187/bruce-beat",
+  "dependencies": {
+    "koa": "~0.18.1"
+  }
 }

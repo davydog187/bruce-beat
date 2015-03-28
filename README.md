@@ -1,7 +1,7 @@
 Bruce Beat
 ==========
 
-* Turn your Google Image queries into music
+* Messing around with koa and Tone.js
 
 ## Possible dependencies
 * koa.js - https://github.com/koajs/koa

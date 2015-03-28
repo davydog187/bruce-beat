@@ -1,18 +1,4 @@
-
-function onButtonClick(){
-    $('button').click( function(){
-       var query = $('input').val();
-       $.ajax({
-          type: "GET",
-          url: "/api/images/" + query,
-          cache: false,
-          success: function(data){
-             $("#resultarea").text(data);
-          }
-       }); 
-    });    
-    
-}
+"use strict";
 
 function toneDeaf(){
     //create one of Tone's built-in synthesizers
@@ -31,6 +17,27 @@ function toneDeaf(){
     Tone.Transport.start();
 }
 
+function fetchData(callback) {
+    $.ajax({
+        type: "GET",
+        url: "/api/images/test",
+        cache: false,
+        success: callback
+    });
+}
+
+function appendImagesToContainer(images) {
+    images.forEach(function(image) {
+        $(".images-container").append(image.markup);
+    });
+}
+
 $(function(){
-    onButtonClick();
+    console.log("starting client application...");
+    fetchData(function(data) {
+        console.log("got data: ", data);
+        appendImagesToContainer(data.images);
+    })
 });
+
+console.log("yooooo");

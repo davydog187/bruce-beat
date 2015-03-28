@@ -10,8 +10,17 @@ function makeRelative(path) {
     return __dirname + "/" + path;
 }
 
+function *getGoogleImg(query){
+
+    this.body = {
+        img: '/path'
+    };
+
+}
+
 app.use(serve(makeRelative("html")));
 app.use(serve(makeRelative("client")));
+app.use(router.get('/get-google-img', getGoogleImg));
 
 app.listen(PORT);
 

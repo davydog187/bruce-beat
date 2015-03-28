@@ -1,7 +1,16 @@
 
 function onButtonClick(){
     $('button').click( function(){
-       query = $('input').val();
+       var query = $('input').val();
+        $.ajax({
+            type: "GET",
+            url: "serverscript.",
+            data: query,
+            cache: false,
+            success: function(data){
+                $("#resultarea").text(data);
+            }
+        }); 
     });    
     
 }

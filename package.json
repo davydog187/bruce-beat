@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node --harmony --harmony-generators server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/davydog187/bruce-beat",
   "dependencies": {
-    "koa": "~0.18.1"
+    "koa": "~0.18.1",
+    "koa-route": "^2.4.0",
+    "koa-static": "^1.4.9"
   }
 }

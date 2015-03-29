@@ -26,4 +26,4 @@ app.use(router.get('/api/images/:query', imageRouter));
 
 app.listen(PORT);
 
-console.log("bruce beat is running on", PORT, "bitches");
+console.log("bruce beat is running on", PORT);

@@ -1,19 +1,16 @@
 "use strict";
 
-var c = new Tone.Oscillator("c4").toMaster();
-var d = new Tone.Oscillator("d4").toMaster();
-var e = new Tone.Oscillator("e4").toMaster();
-var g = new Tone.Oscillator("g4").toMaster();
-var a = new Tone.Oscillator("a4").toMaster();
-var highC = new Tone.Oscillator("c5").toMaster();
+function createTone(note) {
+    return new Tone.Oscillator(note).toMaster();
+}
 
 var noteToTone = {
-    "c4": c,
-    "d4": d,
-    "e4": e,
-    "g4": g,
-    "a4": a,
-    "c5": highC
+    "c4": createTone("c4"),
+    "d4": createTone("d4"),
+    "e4": createTone("e4"),
+    "g4": createTone("g4"),
+    "a4": createTone("a4"),
+    "c5": createTone("c5")
 };
 
 var notes = [
@@ -25,20 +22,12 @@ var notes = [
     "c5",
 ];
 
-
 function fetchData(callback) {
     $.ajax({
         type: "GET",
         url: "/api/images/test",
         cache: false,
         success: callback
-    });
-}
-
-function appendImagesToContainer(images) {
-    images.forEach(function(image) {
-        console.log(image.url);
-        $(".images-container").append(image.markup);
     });
 }
 
@@ -57,23 +46,34 @@ function getNotesFromImages(images) {
     });
 }
 
+function playTone(tone) {
+    tone.start();
+    tone.stop("+0.5");
+}
+
+function showImage($container, imageMarkup) {
+    $container.html(imageMarkup);
+}
+
 $(function(){
     console.log("starting client application...");
     fetchData(function(data) {
         console.log("got data: ", data);
-        appendImagesToContainer(data.images);
+
         var notes = getNotesFromImages(data.images);
         var index = 0;
         var length = notes.length;
+
+        var $imageContainer = $(".images-container");
+
         setInterval(function() {
             if (index < length) {
                 console.log("playing: ", notes[index]);
-                noteToTone[notes[index]].start();
-                noteToTone[notes[index]].stop("+0.5");
+                var note = notes[index];
+                showImage($imageContainer, data.images[index].markup);
+                playTone(noteToTone[note]);
                 ++index;
             }
         }, 500);
     })
 });
-
-console.log("yooooo");

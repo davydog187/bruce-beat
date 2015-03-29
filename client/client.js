@@ -1,18 +1,5 @@
 "use strict";
 
-function createTone(note) {
-    return new Tone.Oscillator(note).toMaster();
-}
-
-var noteToTone = {
-    "c4": createTone("c4"),
-    "d4": createTone("d4"),
-    "e4": createTone("e4"),
-    "g4": createTone("g4"),
-    "a4": createTone("a4"),
-    "c5": createTone("c5")
-};
-
 var notes = [
     "c4",
     "d4",
@@ -21,6 +8,15 @@ var notes = [
     "a4",
     "c5",
 ];
+
+function createTone(note) {
+    return new Tone.Oscillator(note).toMaster();
+}
+
+var noteToTone = notes.reduce(function(result, note) {
+    result[note] = createTone(note);
+    return result;
+}, {});
 
 function fetchData(callback) {
     $.ajax({
